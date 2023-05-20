@@ -12,14 +12,16 @@ const datos_clima = position => {
 const set_datos_clima = datos => {
     console.log(datos)
 
+    let temp_redondeada = Math.round(datos.main.temp);
+    
 
     const datos_api = {
         ubi: datos.name,
         descripcion: datos.weather[0].description,
         humedad: ('Humedad: ' + datos.main.humidity + '%'),
         presion: ('Presión: ' + datos.main.pressure + 'Pa'),
-        viento: ('Viento: ' + datos.wind.speed + 'm/s'),
-        temperatura: (datos.main.temp + '° C'),
+        viento: ('Viento: ' + datos.wind.speed + ' Km/h'),
+        temperatura: (temp_redondeada + '° C'),
         fecha: get_fecha()
     }
     Object.keys(datos_api).forEach(key => {
