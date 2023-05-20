@@ -50,14 +50,10 @@ section{
     font-size: 36px;
     margin-top: 15px;
 }
-/*
-.datos_extra{
-    background-color: #ffffff;
-    padding: 0px 2px;
-    border-radius: 8px;
-}*/
+
 span{
     display: flex;
+    border-radius: 3px;
     background-color: #3fb879;
     padding: 5px 10px;
     margin: 2px 0px;
@@ -68,7 +64,25 @@ span{
     margin-left: 5px;
     
 }
-
+.next_data{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  height: 120px;
+}
+.next_data_card{
+  width: 19%;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #3fb879;
+}
+.next_data_card > div {
+  margin: 4px 0;
+}
 /* spinner */
 .loader {
     margin: 100px auto;
