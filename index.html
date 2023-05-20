@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body onload="Onload()">
+    <main id="content" class="content" >
+        <section class="data_today">
+            
+            <div class="ubi_descrip">
+                <div id="ubi"></div>
+                <div id="descripcion"></div>
+            </div>
+
+            <div class="temp">
+                
+                <div class="icon_clima">
+                   <img id="img_icon" src="img/astronauta.png" width="100"> 
+                </div>
+                <div id="temperatura"></div>
+
+            </div>
+            
+            <div class="datos_extra">
+                <span><img src="img/humedad.png" width="24px" height="24"> <div id="humedad"></div></span>
+                <span><img src="img/calibre.png" width="24px" height="24"><div id="presion"></div></span>
+                <span><img src="img/viento.png" width="24px" height="24"><div id="viento"></div></span>
+                <span><img src="img/calendario.png" width="24px" height="24"><div id="fecha"></div></span>
+                  
+                
+            </div>
+           
+            
+
+            
+            
+        </section>
+        <section class="data_week"><h2>datos de la semana</h2>
+        </section>  
+    </main>
+
+
+    <div id="loader" class="loader">Loading...</div>
+
+    <script src="js/app.js" ></script>
+</body>
+</html>
