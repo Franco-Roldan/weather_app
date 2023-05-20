@@ -26,7 +26,8 @@ const set_datos_clima_ahora = datos => {
         presion: ('Presión: ' + datos.main.pressure + 'Pa'),
         viento: ('Viento: ' + datos.wind.speed + ' Km/h'),
         temperatura: (temp_redondeada + '° C'),
-        fecha: get_fecha()
+        fecha: get_fecha(),
+        sensacion: ('Sensación térmica: ' + Math.round(datos.main.feels_like)+'° C')
     }
     Object.keys(datos_api).forEach(key => {
         document.getElementById(key).textContent = datos_api[key]
