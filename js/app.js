@@ -37,7 +37,7 @@ const set_datos_clima_ahora = datos => {
     const content = document.getElementById('content');
     const carga = document.getElementById('loader');
     carga.style.display = 'none';
-    content.style.display = 'block';
+    content.style.display = 'flex';
 
 }
 
@@ -86,6 +86,7 @@ const set_datos_clima_dia = dato_semana => {
          
     }
    
+    data_week(dato_semana);
 }
 
 function get_fecha(){
@@ -93,12 +94,157 @@ function get_fecha(){
     return `${fecha.getDate()}-${('0'+ (fecha.getMonth() + 1)).slice(-2)}-${fecha.getFullYear()}`;
 }
 
-const Onload = () => {
-    navigator.geolocation.getCurrentPosition(datos_clima);
-}
 
 function icon_clima(icon){
 
     let icono = document.getElementById('img_icon').src = 'https://openweathermap.org/img/w/'+icon+'.png';
     return icono
 }
+
+function data_week(dato_semana){
+
+    const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+    let fecha = new String()
+    let Array_fech = [];
+    let fecha_hoy = new Date()
+    fecha_hoy = fecha_hoy.getDay()
+
+    let array_aux = new Array();
+    let dias_semana = new Array();
+
+    for(let i=0; i < dato_semana.list.length; i++){
+ 
+        
+        array_aux = [
+            dato_semana.list[i].dt_txt.slice(0,10),
+            dato_semana.list[i].dt_txt.slice(11,16),
+            'https://openweathermap.org/img/w/'+dato_semana.list[i].weather[0].icon+'.png',
+            (Math.round(dato_semana.list[i].main.temp) + '° C'),
+            (Math.round(dato_semana.list[i].pop * 100)) + '%',
+            (Math.round(dato_semana.list[i].wind.speed)) + 'Km/h'
+        ];
+        dias_semana.push(array_aux);
+    }
+    let aux = 0;
+    let aux2 = 0;
+    for(let i=0; i < dias_semana.length; i++){
+
+        
+        let fecha_dia = new Date(dias_semana[i][0]);
+        fecha = fecha_dia.getDay() + 1
+        //console.log(fecha_hoy +' - '+ fecha);
+
+
+        if(fecha != fecha_hoy){
+            
+            if(dias_semana[i][0] == dias_semana[i - 1][0]){
+                console.log(dias_semana[i][0] + ' - '+ dias_semana[i][1]);
+                
+                let ul = document.createElement('ul');
+                ul.classList.add('day_data');
+                for( let j = 0;j < 6; j++ ){
+                    
+                    if(j != 0){
+                        if(j != 2){
+                            const li = document.createElement('li');
+                            li.textContent = dias_semana[i][j];
+                            ul.appendChild(li); 
+                        }else{
+                            const icon = document.createElement('img');
+                            icon.src = dias_semana[i][j];
+                            icon.style.width = '30px';
+                            icon.style.height = '30px';
+                            ul.appendChild(icon);
+                        }
+                      
+                    }
+                    
+                }
+                const day = document.getElementById('day_'+aux);
+                day.appendChild(ul);
+
+
+            }else{
+                switch (fecha) {
+                    case fecha_hoy + 1:
+                        aux = 0;
+                        break;
+                    case fecha_hoy + 2:
+                        aux = 1;
+                        break;                
+                    case fecha_hoy + 3:
+                        aux = 2;
+                        break;
+                    case fecha_hoy + 4:
+                        aux = 3;
+                        break;
+                    case fecha_hoy + 5:
+                        aux = 4;
+                    default:
+                        break;
+                }
+                // if( fecha == (fecha_hoy + 2)){
+                //     aux = 1;
+                // }
+
+
+                console.log(dias_semana[i][0] + ' - '+ dias_semana[i][1]);
+                let p = document.getElementById('p'+aux);
+                p.textContent = dias[fecha];
+
+                let ul = document.createElement('ul');
+                ul.classList.add('day_data');
+                for( let j = 0;j < 6; j++ ){
+                    
+                    if(j != 0){
+                        if(j != 2){
+                            const li = document.createElement('li');
+                            li.textContent = dias_semana[i][j];
+                            ul.appendChild(li); 
+                        }else{
+                            const icon = document.createElement('img');
+                            icon.src = dias_semana[i][j];
+                            icon.style.width = '30px';
+                            icon.style.height = '30px';
+                            ul.appendChild(icon);
+                        }
+                      
+                    }
+                    
+                }
+                const day = document.getElementById('day_'+aux);
+                day.appendChild(ul);
+
+                // if( fecha != (fecha_hoy + 1)){
+                //     aux++;
+                // }
+
+                
+            }
+            
+
+           
+                
+            
+        }
+
+    
+        
+
+    }
+
+
+    console.log(dias_semana);
+
+}
+
+
+const Onload = () => {
+    navigator.geolocation.getCurrentPosition(datos_clima);
+}
+
+// let fech = new Date(2023, 3, 25)
+
+
+
+// console.log(dias[fech.getDay()])

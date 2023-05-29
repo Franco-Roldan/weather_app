@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/icon_web.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -12,6 +13,7 @@
 </head>
 <body onload="Onload()">
     <main id="content" class="content" >
+
         <section class="data_today">
             
             <div class="ubi_descrip">
@@ -37,17 +39,52 @@
            
         </section>
 
-        <section class="next_data">
-            <div class="next_data_card"><div id="hr_0">hora</div><img id="icon_0" src="img/astronauta.png" width="45" height="auto"><div id="temp_0">temp</div></div>
-            <div class="next_data_card"><div id="hr_1">hora</div><img id="icon_1" src="img/astronauta.png" width="45" height="auto"><div id="temp_1">temp</div></div>
-            <div class="next_data_card"><div id="hr_2">hora</div><img id="icon_2" src="img/astronauta.png" width="45" height="auto"><div id="temp_2">temp</div></div>
-            <div class="next_data_card"><div id="hr_3">hora</div><img id="icon_3" src="img/astronauta.png" width="45" height="auto"><div id="temp_3">temp</div></div>
-            <div class="next_data_card"><div id="hr_4">hora</div><img id="icon_4" src="img/astronauta.png" width="45" height="auto"><div id="temp_4">temp</div></div>
-        </section>
+        <div class="large_screen">
 
-        <section class="data_week">
-            <h2>datos de la semana</h2>
-        </section>  
+            <section class="next_data">
+                <div class="next_data_card"><div id="hr_0">hora</div><img id="icon_0" src="img/astronauta.png" width="45" height="auto"><div id="temp_0">temp</div></div>
+                <div class="next_data_card"><div id="hr_1">hora</div><img id="icon_1" src="img/astronauta.png" width="45" height="auto"><div id="temp_1">temp</div></div>
+                <div class="next_data_card"><div id="hr_2">hora</div><img id="icon_2" src="img/astronauta.png" width="45" height="auto"><div id="temp_2">temp</div></div>
+                <div class="next_data_card"><div id="hr_3">hora</div><img id="icon_3" src="img/astronauta.png" width="45" height="auto"><div id="temp_3">temp</div></div>
+                <div class="next_data_card"><div id="hr_4">hora</div><img id="icon_4" src="img/astronauta.png" width="45" height="auto"><div id="temp_4">temp</div></div>
+            </section>
+
+            <section class="data_week">
+                <h2>datos de la semana</h2>
+                <ul class="day_list">
+                    <li id="day_0" class="day">
+                        <p id="p0">Lunes</p>
+ 
+                    </li>
+                    <li id="day_1" class="day">
+                        <p id="p1">Martes</p>
+                        <ul class="day_data">
+                            
+                        </ul>
+                    </li>
+                    <li id="day_2" class="day">
+                        <p id="p2">Miercoles</p>
+                        <ul class="day_data">
+                            
+                        </ul>
+                    </li>
+                    <li id="day_3" class="day">
+                        <p id="p3">Jueves</p>
+                        <ul class="day_data">
+                            
+                        </ul>
+                    </li>
+                    <li id="day_4" class="day">
+                        <p id="p4">Viernes</p>
+                        <ul class="day_data">
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </section> 
+        </div>
+
+ 
     </main>
 
 
