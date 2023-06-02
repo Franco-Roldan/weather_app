@@ -14,7 +14,7 @@ const datos_clima = position => {
 }
 
 const set_datos_clima_ahora = datos => {
-    console.log(datos)
+    //console.log(datos)
 
     let temp_redondeada = Math.round(datos.main.temp);
     
@@ -42,7 +42,7 @@ const set_datos_clima_ahora = datos => {
 }
 
 const set_datos_clima_dia = dato_semana => {
-    console.log(dato_semana)
+    //console.log(dato_semana)
 
     const datos_proximos = {
         0:{
@@ -71,7 +71,7 @@ const set_datos_clima_dia = dato_semana => {
             temp: (Math.round(dato_semana.list[4].main.temp) + '° C')
         }
     }
-    console.log(datos_proximos);
+    //console.log(datos_proximos);
 
     for (let i = 0; i < 5; i++) {
         
@@ -126,19 +126,15 @@ function data_week(dato_semana){
         dias_semana.push(array_aux);
     }
     let aux = 0;
-    let aux2 = 0;
     for(let i=0; i < dias_semana.length; i++){
-
-        
+      
         let fecha_dia = new Date(dias_semana[i][0]);
-        fecha = fecha_dia.getDay() + 1
-        //console.log(fecha_hoy +' - '+ fecha);
-
-
+        fecha = fecha_dia.getDay() + 1; 
+        
         if(fecha != fecha_hoy){
             
             if(dias_semana[i][0] == dias_semana[i - 1][0]){
-                console.log(dias_semana[i][0] + ' - '+ dias_semana[i][1]);
+                //console.log(dias_semana[i][0]+ ' - '+dias_semana[i][1]);
                 
                 let ul = document.createElement('ul');
                 ul.classList.add('day_data');
@@ -181,17 +177,18 @@ function data_week(dato_semana){
                     case fecha_hoy + 5:
                         aux = 4;
                     default:
+                        aux++
                         break;
                 }
-                // if( fecha == (fecha_hoy + 2)){
-                //     aux = 1;
-                // }
 
-
-                console.log(dias_semana[i][0] + ' - '+ dias_semana[i][1]);
+                //console.log( 'p'+aux + ' - '+dias[fecha] + ' - '+fecha);
+                if(fecha == 7){
+                    fecha = 0;
+                }
                 let p = document.getElementById('p'+aux);
+            
                 p.textContent = dias[fecha];
-
+            
                 let ul = document.createElement('ul');
                 ul.classList.add('day_data');
                 for( let j = 0;j < 6; j++ ){
@@ -214,12 +211,6 @@ function data_week(dato_semana){
                 }
                 const day = document.getElementById('day_'+aux);
                 day.appendChild(ul);
-
-                // if( fecha != (fecha_hoy + 1)){
-                //     aux++;
-                // }
-
-                
             }
             
 
@@ -234,7 +225,7 @@ function data_week(dato_semana){
     }
 
 
-    console.log(dias_semana);
+    //console.log(dias_semana);
 
 }
 
