@@ -5,7 +5,8 @@
 }
 
 body{
-    background-image: url(../img/fondo_cielo.webp);
+    background: url(../img/fondo_cielo.webp) no-repeat;
+    background-attachment: fixed;
     height: auto;
     display: flex;
     justify-content: center;
@@ -25,7 +26,36 @@ section{
     border-radius: 8px;
     padding: 15px 30px;
 }
-
+.search_div{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+#search{
+  width: calc(100% - 52px);
+  padding: 5px 15px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 8px 0px 0px 8px;
+  font-size: large;
+}
+.btn_search{
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  padding-top: 3px;
+}
+.lupa:hover{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.lupa{
+  width: 22px;
+  height: 22px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px 15px;
+  border-radius: 0px 8px 8px 0px;
+}
 #ubi{
     font-weight: 400;
     font-size: 22px;
@@ -130,7 +160,9 @@ span{
   margin: 4px 0;
 }
 
-
+#day_5{
+  display: none;
+}
 
 
 /* spinner */
