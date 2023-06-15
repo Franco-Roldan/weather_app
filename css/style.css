@@ -36,6 +36,7 @@ section{
   padding: 5px 15px;
   outline: none;
   background-color: rgba(0, 0, 0, 0.2);
+  color:  grey;
   border: none;
   border-radius: 8px 0px 0px 8px;
   font-size: large;

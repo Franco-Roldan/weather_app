@@ -1,45 +1,73 @@
 
 const API_key = '5dd2d9003c1bef8bc95f39d2b5b50327';
-const city = 'Barcelona';
+
+
+const btn = document.querySelector('.btn_search');
+btn.addEventListener('click', () => {
+
+    const city = document.getElementById('search').value;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lang=es&q=${city}&units=metric&appid=${API_key}`)
+        .then(search_data => search_data.json())
+        .then(respuesta => clima_ahora(respuesta));
+
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lang=es&q=${city}&units=metric&appid=${API_key}`)
+        .then(search_data_week => search_data_week.json())
+        .then(res => set_datos_clima_dia(res))
+})
+
+
+document.getElementById('search').onkeyup = function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.querySelector(".btn_search").click();
+    }
+}
+
 const datos_clima = position => {
-    
-     const {latitude , longitude} = position.coords;
-    //  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_key}`)
-    //      .then(search_data => search_data.json())
-    //      .then(respuesta => console.log(respuesta));
-    
-     //peticion a la api de los datos en el momento, lo devuelve en formato json
-     fetch(`https://api.openweathermap.org/data/2.5/weather?lang=es&units=metric&lat=${latitude}&lon=${longitude}&appid=${API_key}`)
-         .then(respuesta => respuesta.json())
-         .then(datos => set_datos_clima_ahora(datos));
+
+    const {latitude , longitude} = position.coords;
+    //peticion a la api de los datos en el momento, lo devuelve en formato json
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lang=es&units=metric&lat=${latitude}&lon=${longitude}&appid=${API_key}`)
+        .then(respuesta => respuesta.json())
+        .then(datos => set_datos_clima_ahora(datos));
      // peticion a la api de los datos de los proxiomos 5 dias.
-     fetch(`https://api.openweathermap.org/data/2.5/forecast?lang=es&units=metric&lat=${latitude}&lon=${longitude}&appid=${API_key}`)
-         .then(res_semana => res_semana.json())
-         .then(dato_semana => set_datos_clima_dia(dato_semana))
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lang=es&units=metric&lat=${latitude}&lon=${longitude}&appid=${API_key}`)
+        .then(res_semana => res_semana.json())
+        .then(dato_semana => set_datos_clima_dia(dato_semana))
 
  }
 // recolecto del json los datos de interes y los muestro por pantalla
 
 function clima_ahora(datos){
-    let temp_redondeada = Math.round(datos.main.temp);
-    
-    const datos_api = {
-        ubi: datos.name,
-        descripcion: datos.weather[0].description,
-        humedad: ('Humedad: ' + datos.main.humidity + '%'),
-        presion: ('Presión: ' + datos.main.pressure + 'Pa'),
-        viento: ('Viento: ' + datos.wind.speed + ' Km/h'),
-        temperatura: (temp_redondeada + '° C'),
-        fecha: get_fecha(),
-        sensacion: ('Sensación térmica: ' + Math.round(datos.main.feels_like)+'° C')
-    }
-    // tanto las keys del objeto datos_api como los id de las etiquetas en el HTML son iguales
-    // por lo tanto itero el objeto y inserto los valores en su lugar correspondiente 
-    Object.keys(datos_api).forEach(key => {
-        document.getElementById(key).textContent = datos_api[key]
-    })
-    icon_clima(datos.weather[0].icon);
 
+    if(datos.cod == 404){
+        const city = document.getElementById('search').value = 'Solo ingrese nombre de Ciudades';
+    }else{
+        //console.log(datos);
+        
+
+        let temp_redondeada = Math.round(datos.main.temp);
+        
+        const datos_api = {
+            ubi: datos.name,
+            descripcion: datos.weather[0].description,
+            humedad: ('Humedad: ' + datos.main.humidity + '%'),
+            presion: ('Presión: ' + datos.main.pressure + 'Pa'),
+            viento: ('Viento: ' + datos.wind.speed + ' Km/h'),
+            temperatura: (temp_redondeada + '° C'),
+            fecha: get_fecha(),
+            sensacion: ('Sensación térmica: ' + Math.round(datos.main.feels_like)+'° C')
+        }
+        // tanto las keys del objeto datos_api como los id de las etiquetas en el HTML son iguales
+        // por lo tanto itero el objeto y inserto los valores en su lugar correspondiente 
+        Object.keys(datos_api).forEach(key => {
+            document.getElementById(key).textContent = datos_api[key]
+        })
+        icon_clima(datos.weather[0].icon);    
+        const city = document.getElementById('search').value = '';
+ 
+
+    }
 }
 
 const set_datos_clima_ahora = datos => {
@@ -111,6 +139,21 @@ function icon_clima(icon){
 function data_week(dato_semana){
 
     
+    
+
+    // for(let i = 0; i < 6; i++){
+    //     const list = document.getElementById("day_"+i);
+    //     while (list.hasChildNodes) {
+    //         list.removeChild(list.children[0]);
+    //     }
+        
+    // }
+    
+
+
+
+
+
     const day_name = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado','Domingo'];
     let fecha = new String()
 
@@ -154,7 +197,7 @@ function data_week(dato_semana){
         }
      
     }
-    console.log(days_array);
+    
 
     let i = 0;
     days_array.forEach(() => {
@@ -206,7 +249,7 @@ function data_week(dato_semana){
                     }
                     
                 }
-                console.log('day_'+aux);
+                
                 const day = document.getElementById('day_'+aux);
                 day.appendChild(ul);
 
