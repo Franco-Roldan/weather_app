@@ -111,17 +111,18 @@ function icon_clima(icon){
 function data_week(dato_semana){
 
     
-    const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+    const day_name = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado','Domingo'];
     let fecha = new String()
 
     let fecha_hoy = new Date()
     fecha_hoy = fecha_hoy.getDay()
 
     let array_aux = new Array();
+    let days_array = new Array(); 
     let dias_semana = new Array();
 
     for(let i=0; i < dato_semana.list.length; i++){
- 
+
         // lapso de tiempo de 3 horas
         array_aux = [
             dato_semana.list[i].dt_txt.slice(0,10), // fecha
@@ -133,6 +134,36 @@ function data_week(dato_semana){
         ];
         dias_semana.push(array_aux); 
     }
+    
+    for(let i = 0; i < dias_semana.length; i++){
+        const day_date = new Date(dias_semana[i][0]);
+        if(day_date.getDay() +1 != fecha_hoy){
+ 
+            if(i == 0){
+                days_array.push(day_name[day_date.getDay()]);
+            }else{
+                if(dias_semana[i][0] === dias_semana[i-1][0]){
+                    if(days_array.indexOf(day_name[day_date.getDay()]) < 0){
+                        
+                        // let day_date = new Date(dias_semana[i][0])
+                        // days_array.push(day_name[day_date.getDay()+1]);
+                        days_array.push(day_name[day_date.getDay()]);
+                    }
+                } 
+            }
+        }
+     
+    }
+    console.log(days_array);
+
+    let i = 0;
+    days_array.forEach(() => {
+        const p = document.getElementById('p'+i);
+        p.textContent = days_array[i];
+        i++;
+    })
+
+
     //console.log(dias_semana);
     let aux = 0;
     let fecha_init = new Date(dias_semana[0][0]);
@@ -175,6 +206,7 @@ function data_week(dato_semana){
                     }
                     
                 }
+                console.log('day_'+aux);
                 const day = document.getElementById('day_'+aux);
                 day.appendChild(ul);
 
@@ -183,7 +215,7 @@ function data_week(dato_semana){
 
                 if(fecha_init == 0){
                     let p = document.getElementById('p0');
-                    p.textContent = dias[fecha_hoy+1];
+                    p.textContent = day_name[fecha_hoy+1];
                     fecha_init =1;
                 }
                 switch (fecha) {
@@ -203,21 +235,18 @@ function data_week(dato_semana){
                         aux = 4;
                         break;
                     default:
-                        aux = 5;
+                        aux++;
                         break;
                 }
 
                 //console.log( 'p'+aux + ' - '+dias[fecha] + ' - '+fecha);
                 //console.log(fecha, aux)
-                if(fecha == 7){
-                    fecha = 0;
-                }
                 
                 //console.log('p'+aux);
-                let p = document.getElementById('p'+aux);
+      
                 
                 //console.log(dias[fecha], dias_semana[i][0])
-                p.textContent = dias[fecha];
+     
             
                 let ul = document.createElement('ul');
                 ul.classList.add('day_data');
@@ -261,8 +290,3 @@ const Onload = () => {
     navigator.geolocation.getCurrentPosition(datos_clima);
 }
 
-// let fech = new Date(2023, 3, 25)
-
-
-
-// console.log(dias[fech.getDay()])
