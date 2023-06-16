@@ -141,13 +141,25 @@ function data_week(dato_semana){
     
     
 
-    // for(let i = 0; i < 6; i++){
-    //     const list = document.getElementById("day_"+i);
-    //     while (list.hasChildNodes) {
-    //         list.removeChild(list.children[0]);
-    //     }
+ 
+    
+    //const list = document.getElementById("day_"+i);
+    if(document.querySelector('.day_data')){
+        const list = document.querySelectorAll('.day_data');
         
-    // }
+        list.forEach(list_ul => {
+            list_ul.remove();
+
+        })
+
+    }
+        
+        
+
+
+   
+        
+   
     
 
 
