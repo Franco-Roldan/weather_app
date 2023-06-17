@@ -138,12 +138,13 @@ function icon_clima(icon){
 // datos de la semana
 function data_week(dato_semana){
 
-    
-    
 
- 
-    
-    //const list = document.getElementById("day_"+i);
+    const day_name = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado','Domingo'];
+    let fecha = new String()
+
+    let fecha_hoy = new Date()
+    fecha_hoy = fecha_hoy.getDay()
+
     if(document.querySelector('.day_data')){
         const list = document.querySelectorAll('.day_data');
         
@@ -153,24 +154,6 @@ function data_week(dato_semana){
         })
 
     }
-        
-        
-
-
-   
-        
-   
-    
-
-
-
-
-
-    const day_name = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado','Domingo'];
-    let fecha = new String()
-
-    let fecha_hoy = new Date()
-    fecha_hoy = fecha_hoy.getDay()
 
     let array_aux = new Array();
     let days_array = new Array(); 
@@ -209,13 +192,17 @@ function data_week(dato_semana){
         }
      
     }
-    
-
-    let i = 0;
-    days_array.forEach(() => {
-        const p = document.getElementById('p'+i);
-        p.textContent = days_array[i];
-        i++;
+    console.log(days_array);
+    days_array.forEach((valor, index) => {
+        console.log('p'+index);
+        const p = document.getElementById('p'+index);
+  
+        console.log(valor);
+        p.textContent = valor;
+       
+        
+      
+        
     })
 
 
@@ -267,12 +254,6 @@ function data_week(dato_semana){
 
 
             }else{
-
-                if(fecha_init == 0){
-                    let p = document.getElementById('p0');
-                    p.textContent = day_name[fecha_hoy+1];
-                    fecha_init =1;
-                }
                 switch (fecha) {
                     case fecha_hoy + 1:
                         aux = 0;
